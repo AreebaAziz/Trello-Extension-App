@@ -22,6 +22,74 @@
 		</noscript>
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+
+
+
+
+
+		<!--JS Section: Read File and Make Array-->
+		<script>
+
+		
+
+	    var openFile = function(event) {
+	        var input = event.target;
+	        var tasks = [];
+
+	        var reader = new FileReader();
+	        reader.onload = function(){
+	          var text = reader.result;
+	          console.log(reader.result);
+	          var items = reader.result.split("\n");
+	          for (i = 0; i<(items.length-1); i++){
+	          	var parts = items[i].split(";");
+	          	var tmptask = new Object();
+	          	tmptask.task = parts[0].substring(1, parts[0].length);
+
+	          	//getting time stamp 
+/*	          	console.log("Year:" + parts[1].substring(7, 11));
+	          	console.log("Month:" + parts[1].substring(0, 3));*/
+	          	mon = parseInt(parts[1].substring(0, 3)) - 1;
+	          	mon = "" + mon;
+/*	          	console.log("Day:" + parts[1].substring(4, 6));
+	          	console.log("Hours:" + parts[1].substring(12, 14));
+	          	console.log("Minutes:" + parts[1].substring(15, 17));*/
+
+	          	var timestamp = parseInt(new Date(parts[1].substring(7, 11), mon, parts[1].substring(4, 6), parts[1].substring(12, 14), parts[1].substring(15, 17), '00', '00'  ).getTime()/1000).toFixed(0);
+	          	//console.log(timestamp);
+
+
+	          	//checking timestamp
+/*	          	var date = new Date(timestamp*1000);
+				// Hours part from the timestamp
+				var hours = date.getHours();
+				// Minutes part from the timestamp
+				var minutes = "0" + date.getMinutes();
+				// Seconds part from the timestamp
+				var seconds = "0" + date.getSeconds();
+
+				// Will display time in 10:30:23 format
+				var formattedTime = date + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+				console.log("Format Time: " + formattedTime);
+*/
+
+
+
+	          	tmptask.dueDate = timestamp;
+	    		if(parts.length < 3){
+	    			tmptask.description = "No description yet";
+	    		} else{
+	    			tmptask.description = parts[2].substring(1, parts[2].length);
+	    		}
+	    		console.log(tmptask);
+	    		tasks.push(tmptask);
+	          }
+	          console.log("tasks: " + tasks);
+	        };
+	        reader.readAsText(input.files[0]);
+	      };
+	    </script>
+
 	</head>
 	<body class="landing">
 
@@ -50,9 +118,25 @@
 				<div class="inner">
 					<h2>Tempus</h2>
 					<p>A Visual Approach to Task Management</p>
-					<ul class="actions">
-						<li><a href="http://i.imgur.com/kZlyN61.gifv" class="button big scrolly" target="_blank">Upload Spreadsheet</a></li>
-					</ul>
+
+					<!-- 					<ul class="actions">
+						<li><a href="#one" class="button big scrolly">Upload Spreadsheet</a></li>
+					</ul> -->
+
+					<!--replaced w/ upload button, fix format later-->
+					<input type='file' accept='.csv' onchange='openFile(event)'><br>
+
+					<!-- cont as normal -->
+
+
+
+
+
+
+
+
+
+
 					<ul class="actions">
 						<li><a href="http://i.imgur.com/kZlyN61.gifv" class="button big scrolly" target="_blank">Create Trello Board</a></li>
 					</ul>
