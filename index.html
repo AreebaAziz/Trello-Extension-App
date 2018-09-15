@@ -92,6 +92,47 @@
 	    </script>
 
 	</head>
+	<script>
+		//TRELLO INTEGRATION---------------------------
+	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	  crossorigin="anonymous"
+	</script>
+	<script src="https://api.trello.com/1/client.js?key=961a64bfc779b403ca434fedb6083fcb 
+"></script>
+	<script>
+		var authenticationSuccess = function() {
+		  console.log('Authentication successful!');
+		};
+
+		var authenticationFailure = function() {
+		  console.log('Authentication failed!');
+		};
+
+		window.onload = function() {
+			if (window.Trello.authorized() == true) {
+				//hide the sign in banner
+				console.log("User is signed in!");
+			} else {
+				console.log("User is not signed in!");
+			}
+		}
+
+		function signInToTrello() {
+			window.Trello.authorize({
+			  type: 'popup',
+			  name: 'Tempus',
+			  scope: {
+			    read: 'true',
+			    write: 'true' },
+			  expiration: 'never',
+			  success: authenticationSuccess,
+			  error: authenticationFailure
+			});
+		}
+
+		//END TRELLO INTEGRATION------------------------
+	</script>
 	<body class="landing">
 
 		<!-- Header -->
@@ -128,16 +169,14 @@
 					<input type='file' accept='.csv' onchange='openFile(event)'><br>
 
 					<!-- cont as normal -->
-
-
-
-
-
-
-
-
-
-
+					<ul class="actions" id="signInButton">
+						<li>
+							<a href="#" onclick="signInToTrello();" class="button big scrolly">Sign in to Trello</a>
+						</li>
+					</ul>
+					<ul class="actions">
+						<li><a href="http://i.imgur.com/kZlyN61.gifv" class="button big scrolly" target="_blank">Upload Spreadsheet</a></li>
+					</ul>
 					<ul class="actions">
 						<li><a href="http://i.imgur.com/kZlyN61.gifv" class="button big scrolly" target="_blank">Create Trello Board</a></li>
 					</ul>
