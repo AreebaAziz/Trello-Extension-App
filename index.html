@@ -103,10 +103,12 @@
 	<script>
 		var authenticationSuccess = function() {
 		  console.log('Authentication successful!');
+		  console.log(window.Trello);
 		};
 
 		var authenticationFailure = function() {
 		  console.log('Authentication failed!');
+		  console.log(window.Trello);
 		};
 
 		window.onload = function() {
