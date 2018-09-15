@@ -1341,11 +1341,11 @@
 		vertical-align: middle;
 	}
 
-		#cta h2 {
+		/*#cta h2 {
 			display: inline-block;
-			margin: 0 1em 0 0;
+			margin: 0 5em 0 0;
 			vertical-align: middle;
-		}
+		}*/
 
 		#cta .actions {
 			display: inline-block;
