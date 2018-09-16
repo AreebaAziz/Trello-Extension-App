@@ -118,7 +118,7 @@
 			} else {
 				console.log("User is not signed in!");
 			}
-			console.log("updated 10:51pm");
+			console.log("updated 11:03pm");
 		}
 
 		function signIntoTrello() {
@@ -167,7 +167,12 @@
 
 		function getBoardId(board_name) {
 			var raw_result = window.Trello.rest("GET", "members/me?boards=open");
+			console.log(typeof raw_result);
 			console.log(raw_result);
+			for (var key in raw_result) {
+				console.log("key: " + key);
+				console.log("value: " + raw_result[key]);
+			}
 			boards = raw_result["responseJSON"]["boards"];
 			for (var i = 0; i < boards.length; i++) {
 				if (boards[i].name == board_name) {
