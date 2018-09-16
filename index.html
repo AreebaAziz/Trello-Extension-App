@@ -185,7 +185,7 @@
 			} else {
 				console.log("User is not signed in!");
 			}
-			console.log("updated 1:50am");
+			console.log("updated 1:58am");
 		}
 
 		function signIntoTrello() {
@@ -229,9 +229,8 @@
 			//create new Trello board with the title given by param week
 			console.log("Creating board for " + board_name);
 			var result = window.Trello.rest("POST", "boards/?name=" + board_name, {}, createBoard_success, createBoard_failure);
-			console.log(result);
-			console.log(result.getAllResponseHeaders());
-			//console.log(result.responseJSON.id);
+			console.log(Object.keys(config));
+			console.log(JSON.stringify(config));
 			return -1;//getBoardId(board_name);
 		}
 
