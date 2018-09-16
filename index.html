@@ -36,7 +36,7 @@
 
 	    var openFile = function(event) {
 	        var input = event.target;
-	        
+
 
 	        var reader = new FileReader();
 	        reader.onload = function(){
@@ -47,7 +47,7 @@
 	          	var tmptask = {};
 	          	tmptask.task = parts[0].substring(0, parts[0].length);
 
-	          	//getting time stamp 
+	          	//getting time stamp
 /*	          	console.log("Year:" + parts[1].substring(7, 11));
 	          	console.log("Month:" + parts[1].substring(1, 3));*/
 	          	mon = parseInt(parts[1].substring(1, 3)) - 1;
@@ -84,15 +84,15 @@
 	    		}
 	    		//console.log(tmptask);
 	    		tasks.push(tmptask);
-	    		
+
 	          }
 	          //console.log("tasks: " + tasks);
 	          	console.log("What's the length?");
 	       		sortTasksIntoWeeks(tasks);
 	        };
 	        reader.readAsText(input.files[0]);
-	        
-	        
+
+
 	      };
 
 	      function sortTasksIntoWeeks(tasks) {
@@ -133,7 +133,7 @@
 	      				//console.log(date.toDateString());
 	      				console.log(new Date(weekEnd));
 
-	      				
+
 	      				tmpWeek.push(tasks[ptr]);
 	      				ptr++;
 	      				//while time of next obj is less than WeekEnd, include in list
@@ -147,14 +147,14 @@
 	      						}
 	      					}
 	      				}
-	      				
+
 	      				organizedTasks.push([date.toDateString(), tmpWeek]);
 
 	      				//check organized Tasks
 	      				for(i = 0; i < organizedTasks.length; i++){
 	      					console.log(organizedTasks[i]);
 	      				}
-	      		}	
+	      		}
 	      }
 	    </script>
 
@@ -290,13 +290,12 @@
 						<li>
 							<a href="" class="icon fa-angle-down">Sprints</a>
 							<ul>
-								<li><a href="left-sidebar.html">View Sprint</a></li>
-								<li><a href="right-sidebar.html">Start New Sprint</a></li>
+								<li><a href="http://i.imgur.com/kZlyN61.gifv" target="blank">View Sprint</a></li><!--add view sprint function-->
+								<li><a href="http://i.imgur.com/kZlyN61.gifv" target="blank">Start New Sprint</a></li><!-- add start new sprint function-->
 								<li><a href="https://screenful.com/blog/working-in-sprints-with-trello-just-got-easier" target="blank">What is Sprint?</a></li>
 							</ul>
 						</li>
 						<li><a href="about-us.html">About Us</a></li>
-						<!---<li><a href="http://i.imgur.com/kZlyN61.gifv" target="blank">Sign in</a></li>--->
 					</ul>
 				</nav>
 			</header>
@@ -307,34 +306,22 @@
 					<h2>Tempus</h2>
 					<p>An Agile Approach to Task Management</p>
 
-					<!-- 					<ul class="actions">
-						<li><a href="#one" class="button big scrolly">Upload Spreadsheet</a></li>
-					</ul> -->
-
-					<!--replaced w/ upload button, fix format later-->
-					<input type='file' accept='.csv' onchange='openFile(event)'><br>
-
-					&nbsp;
-					&nbsp;
-
-					<!-- cont as normal -->
-					<ul class="actions" id="signInButton">
-						<li>
-							<a href="#" onclick="signIntoTrello();" class="button big scrolly">Sign in to Trello</a>
-						</li>
+					<ul class="actions">
+						<li><a href="#one" class="button big scrolly">Sign in</a></li>
 					</ul>
 					<ul class="actions">
-						<li><a href="#" onclick="createTrelloBoards();" class="button big scrolly">Create Trello Board</a></li>
+						<li><a href="http://i.imgur.com/kZlyN61.gifv" onclick="createTrelloBoards();" class="button big scrolly">Create Trello Board</a></li><!--- add create trello board function-->
 					</ul>
 				</div>
 			</section>
 
 			<!-- CTA -->
 			<section id="cta" class="wrapper style3">
-				<h2>Click below to get started!</h2>
-				<ul class="actions">
+				<h2>Upload Spreadsheet</h2>
+				<!---<ul class="actions">
 					<li><a href="#" class="button big">Sign in</a></li>
-				</ul>
+				</ul>-->
+				<input type='file' accept='.csv' onchange='openFile(event)'><br>
 			</section>
 
 		<!-- One -->
