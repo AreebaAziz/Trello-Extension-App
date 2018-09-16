@@ -225,13 +225,13 @@
       }
 
 		window.onload = function() {
-			console.log("updated 2:31am");
+			console.log("updated 2:33am");
 		}
     	function createTrelloBoards() {
     		for (var week in window.tasks) {
     			var res = window.Trello.rest("POST", "boards/?name=" + week, {}, createBoard_success, createBoard_failure);
     			sleep(5000);
-    			console.log(res);
+    			console.log(Object.keys(res));
     		}
     	}
 
