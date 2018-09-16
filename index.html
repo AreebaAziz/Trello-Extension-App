@@ -228,7 +228,11 @@
       }
 
     	function createTrelloBoards() {
-    		console.log(window.tasks);
+    		for (var week in window.tasks) {
+    			var res = window.Trello.rest("POST", "boards/?name=" + week, {}, createBoard_success, createBoard_failure);
+    			sleep(5000);
+    			console.log(res);
+    		}
     	}
 
 		// function createBoard(board_name) {
