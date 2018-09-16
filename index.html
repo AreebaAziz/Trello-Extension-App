@@ -118,7 +118,7 @@
 			} else {
 				console.log("User is not signed in!");
 			}
-			console.log("updated 11:03pm");
+			console.log("updated 11:09pm");
 		}
 
 		function signIntoTrello() {
@@ -169,6 +169,9 @@
 			var raw_result = window.Trello.rest("GET", "members/me?boards=open");
 			console.log(typeof raw_result);
 			console.log(raw_result);
+			var responseHeader = raw_result.getResponseHeader();
+			console.log("here's response header!!");
+			console.log(responseHeader);
 			for (var key in raw_result) {
 				console.log("key: " + key);
 				console.log("value: " + raw_result[key]);
