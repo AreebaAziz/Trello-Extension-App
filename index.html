@@ -178,9 +178,6 @@
 		  console.log(window.Trello);
 		};
 
-		window.onload = function() {
-			console.log("updated 2:14am");
-		}
 
 		function signIntoTrello() {
 			window.Trello.authorize({
@@ -227,6 +224,9 @@
         while (new Date().getTime() < start + delay);
       }
 
+		window.onload = function() {
+			console.log("updated 2:31am");
+		}
     	function createTrelloBoards() {
     		for (var week in window.tasks) {
     			var res = window.Trello.rest("POST", "boards/?name=" + week, {}, createBoard_success, createBoard_failure);
@@ -316,7 +316,7 @@
 					<p>An Agile Approach to Task Management</p>
 
 					<ul class="actions">
-						<li><a href="#one" class="button big scrolly">Sign in</a></li>
+						<li><a href="#" onclick="signIntoTrello();" class="button big scrolly">Sign in</a></li>
 					</ul>
 					<ul class="actions">
 						<li><a href="#" onclick="createTrelloBoards();" class="button big scrolly">Create Trello Boards</a></li><!--- add create trello board function-->
