@@ -120,7 +120,7 @@
 			}
 		}
 
-		function signInToTrello() {
+		function signIntoTrello() {
 			window.Trello.authorize({
 			  type: 'popup',
 			  name: 'Tempus',
@@ -131,6 +131,48 @@
 			  success: authenticationSuccess,
 			  error: authenticationFailure
 			});
+		}
+
+		window.tasks = 	{
+			"Week 12": [
+				{"task": "test task", "dueDate": 1537058773, "description": "test description"},
+				{"task": "test task another one!", "dueDate": 1537058929, "description": "test another description"}
+			],
+			"Week 14": [
+				{"task": "a third task", "dueDate": 1537012345, "description": "another one description"}
+			], 
+			"Week 15": [
+				{"task": "a fourth task woag", "dueDate": 1537093939, "description": "rfhureuogfr "},
+				{"task": "a fifth omg task", "dueDate": 1537000009, "description": "another one description"},
+				{"task": "a sixth task oh m g", "dueDate": 1528412345, "description": "the last description!!!"}
+			]
+		};
+
+		function createTrelloBoards() {
+			console.log("Creating Trello Boards!");
+			for (var week in window.tasks) {
+				createBoard(week);
+				addTasksToBoard(week, window.tasks[week]);
+			}
+		}
+
+		function createBoard(board_name) {
+			//create new Trello board with the title given by param week
+			console.log("Creating board for " + board_name);
+			window.Trello.rest("POST", "boards/?name=" + board_name, {});
+		}
+
+		function addTasksToBoard(board_name, task_list) {
+			console.log("Adding tasks for " + board_name);
+			for (var i = 0; i < task_list.length; i++) {
+				addTaskToBoard(board_name, task_list[i]);
+			}
+		}
+
+		function addTaskToBoard(board_name, task) {
+			//add a new card with title task.task, description task.description, due date task.dueDate onto
+			//the board with board_name
+			
 		}
 
 		//END TRELLO INTEGRATION------------------------
@@ -173,14 +215,14 @@
 					<!-- cont as normal -->
 					<ul class="actions" id="signInButton">
 						<li>
-							<a href="#" onclick="signInToTrello();" class="button big scrolly">Sign in to Trello</a>
+							<a href="#" onclick="signIntoTrello();" class="button big scrolly">Sign in to Trello</a>
 						</li>
 					</ul>
 					<ul class="actions">
 						<li><a href="http://i.imgur.com/kZlyN61.gifv" class="button big scrolly" target="_blank">Upload Spreadsheet</a></li>
 					</ul>
 					<ul class="actions">
-						<li><a href="http://i.imgur.com/kZlyN61.gifv" class="button big scrolly" target="_blank">Create Trello Board</a></li>
+						<li><a href="#" onclick="createTrelloBoards();" class="button big scrolly">Create Trello Board</a></li>
 					</ul>
 				</div>
 			</section>
