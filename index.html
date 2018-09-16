@@ -180,16 +180,30 @@
 
 
 		function signIntoTrello() {
-			window.Trello.authorize({
-			  type: 'popup',
-			  name: 'Tempus',
-			  scope: {
-			    read: 'true',
-			    write: 'true' },
-			  expiration: 'never',
-			  success: authenticationSuccess,
-			  error: authenticationFailure
+			// window.Trello.authorize({
+			//   type: 'popup',
+			//   name: 'Tempus',
+			//   scope: {
+			//     read: 'true',
+			//     write: 'true' },
+			//   expiration: 'never',
+			//   success: authenticationSuccess,
+			//   error: authenticationFailure
+			// });
+			var data = null;
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.addEventListener("readystatechange", function () {
+			  if (this.readyState === this.DONE) {
+			    console.log(this.responseText);
+			  }
 			});
+
+			xhr.open("GET", "https://api.trello.com/1/members/me?boards=open");
+
+			xhr.send(data);
+
 		}
 
 		window.tasks = 	{
@@ -227,18 +241,18 @@
 		window.onload = function() {
 			console.log("updated 2:42am");
 		}
-    	function createTrelloBoards() {
-    		var res = window.Trello.rest("GET", "members/me?boards=open");
-    		console.log(res);
-    		console.log(Object.keys(res));
-    		sleep(5000);
-    		console.log(Object.keys(res));
-    		console.log(res.responseJSON);
+    	// function createTrelloBoards() {
+    	// 	var res = window.Trello.rest("GET", "members/me?boards=open");
+    	// 	console.log(res);
+    	// 	console.log(Object.keys(res));
+    	// 	sleep(5000);
+    	// 	console.log(Object.keys(res));
+    	// 	console.log(res.responseJSON);
 
-    		// for (var week in window.tasks) {
-    		// 	window.Trello.rest("POST", "boards/?name=" + week, {}, createBoard_success, createBoard_failure);
-    		// }
-    	}
+    	// 	// for (var week in window.tasks) {
+    	// 	// 	window.Trello.rest("POST", "boards/?name=" + week, {}, createBoard_success, createBoard_failure);
+    	// 	// }
+    	// }
 
 		// function createBoard(board_name) {
 		// 	//create new Trello board with the title given by param week
