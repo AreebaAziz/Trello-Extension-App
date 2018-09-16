@@ -166,7 +166,12 @@
 
 		function getBoardId(board_name) {
 			var raw_result = window.Trello.rest("GET", "members/me?boards=open");
-			console.log(raw_result);
+			boards = raw_result.responseJSON.boards;
+			for (var i = 0; i < boards.length; i++) {
+				if (boards[i].name == board_name) {
+					return boards[i].id;
+				}
+			}
 			return -1;
 		}
 
