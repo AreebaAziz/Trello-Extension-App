@@ -134,14 +134,14 @@
 		}
 
 		window.tasks = 	{
-			"Week 12": [
+			"Week 0": [
 				{"task": "test task", "dueDate": 1537058773, "description": "test description"},
 				{"task": "test task another one!", "dueDate": 1537058929, "description": "test another description"}
 			],
-			"Week 14": [
+			"Week 1": [
 				{"task": "a third task", "dueDate": 1537012345, "description": "another one description"}
 			], 
-			"Week 15": [
+			"Week 2": [
 				{"task": "a fourth task woag", "dueDate": 1537093939, "description": "rfhureuogfr "},
 				{"task": "a fifth omg task", "dueDate": 1537000009, "description": "another one description"},
 				{"task": "a sixth task oh m g", "dueDate": 1528412345, "description": "the last description!!!"}
@@ -151,25 +151,42 @@
 		function createTrelloBoards() {
 			console.log("Creating Trello Boards!");
 			for (var week in window.tasks) {
-				createBoard(week);
-				addTasksToBoard(week, window.tasks[week]);
+				var board_id = createBoard(week);
+				console.log(board_id);
+				//addTasksToBoard(board_id, window.tasks[week]);
 			}
 		}
 
 		function createBoard(board_name) {
 			//create new Trello board with the title given by param week
 			console.log("Creating board for " + board_name);
-			window.Trello.rest("POST", "boards/?name=" + board_name, {});
+			window.Trello.rest("POST", "boards/?name=" + board_name, {}, createBoard_success, createBoard_failure);
+			return getBoardId(board_name);
 		}
 
-		function addTasksToBoard(board_name, task_list) {
-			console.log("Adding tasks for " + board_name);
+		function getBoardId(board_name) {
+			var raw_result = window.Trello.rest("GET", "members/me?boards=open");
+			console.log(raw_result);
+			return -1;
+		}
+
+		var createBoard_success = function() {
+			console.log("Successfully created new board!");
+		}
+
+		var createBoard_failure = function() {
+			console.log("Error in creating new board.");
+		}
+
+
+		function addTasksToBoard(board_id, task_list) {
+			console.log("Adding tasks for " + board_id);
 			for (var i = 0; i < task_list.length; i++) {
-				addTaskToBoard(board_name, task_list[i]);
+				addTaskToBoard(board_id, task_list[i]);
 			}
 		}
 
-		function addTaskToBoard(board_name, task) {
+		function addTaskToBoard(board_id, task) {
 			//add a new card with title task.task, description task.description, due date task.dueDate onto
 			//the board with board_name
 			
